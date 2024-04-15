@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Campaigns</title>
+</head>
+<body>
+    <h1>All Campaigns</h1>
+    {% if campaigns %}
+        <ul>
+            {% for campaign in campaigns %}
+                <li>
+                    <a href="{% url 'campaign_details' campaign.id %}" onclick={CampaignHandler(campaign.id)}>
+                        <h2>{{ campaign.title }}</h2>
+                    </a>
+                    <p>Description: {{ campaign.description }}</p>
+                    <p>Goal Amount: ${{ campaign.goal_amount }}</p>
+                    <p>Collected Amount: ${{ campaign.collected_amount }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No campaigns found.</p>
+    {% endif %}
+</body>
+<script>
+    function CampaignHandler(p1){
+        sessionStorage.setItem('campaign.id',p1)
+    }
+</script>
+</html>
