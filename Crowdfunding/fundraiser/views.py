@@ -17,8 +17,8 @@ from .models import Campaign
 import paypalrestsdk
 # Create your views here.
 # Home page
-PAYPAL_CLIENT_ID = 'ATVSKJJabQepqW3iDJOKgVzCVfHpDdBKx8TwOo0HzqM_9rtTrPG-BXVorrmHcySgIqbg1Qm2Xvxn7dnC'
-PAYPAL_SECRET = 'EB9qpvp7NF2BHaME53BGz7PGaypp-MyDXCDk7pZHzjaVBUMgEoKkYbJ0GBOglDSW7893Kifa75OAQCk8'
+PAYPAL_CLIENT_ID = ''
+PAYPAL_SECRET = ''
 
 def index(request):
     return render(request, 'index.html')
@@ -47,7 +47,7 @@ def user_login(request):
                 return redirect('home')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'newUI/login.html', {'form': form})
 
 # logout page
 def user_logout(request):
@@ -71,8 +71,6 @@ def campaign_list(request):
 
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, pk=campaign_id)
-    file=open("E:/Fin_tech/Crowdfunding/crowdfunding/fundraiser/templates/campaign_store_id.txt","w")
-    file.write(str(campaign_id))
     return render(request, 'campaign_details.html', {'campaign': campaign})
 
 paypalrestsdk.configure({
@@ -127,9 +125,7 @@ def execute_payment(request):
     payment = paypalrestsdk.Payment.find(payment_id)
 
     if payment.execute({"payer_id": payer_id}):
-        file=open("E:/Fin_tech/Crowdfunding/crowdfunding/fundraiser/templates/campaign_store_id.txt","r")
-        context=file.read(1)
-        campaign_id = int(context)
+        campaign_id = 2
         print(campaign_id)
         try:
             campaign = Campaign.objects.get(pk=campaign_id)
