@@ -15,6 +15,12 @@ from .forms import SignupForm, LoginForm, CampaignForm
 from django.urls import reverse
 from .models import Campaign
 import paypalrestsdk
+
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent
+
 # Create your views here.
 # Home page
 PAYPAL_CLIENT_ID = 'ATVSKJJabQepqW3iDJOKgVzCVfHpDdBKx8TwOo0HzqM_9rtTrPG-BXVorrmHcySgIqbg1Qm2Xvxn7dnC'
@@ -47,7 +53,7 @@ def user_login(request):
                 return redirect('home')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'newUI/login.html', {'form': form})
 
 # logout page
 def user_logout(request):
@@ -71,7 +77,7 @@ def campaign_list(request):
 
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, pk=campaign_id)
-    file=open("E:/Fin_tech/Crowdfunding/crowdfunding/fundraiser/templates/campaign_store_id.txt","w")
+    file = open(BASE_DIR/"campaign_store_id.txt", "w")
     file.write(str(campaign_id))
     return render(request, 'campaign_details.html', {'campaign': campaign})
 
@@ -127,8 +133,8 @@ def execute_payment(request):
     payment = paypalrestsdk.Payment.find(payment_id)
 
     if payment.execute({"payer_id": payer_id}):
-        file=open("E:/Fin_tech/Crowdfunding/crowdfunding/fundraiser/templates/campaign_store_id.txt","r")
-        context=file.read(1)
+        file = open(BASE_DIR/"campaign_store_id.txt", "r")
+        context = file.read(1)
         campaign_id = int(context)
         print(campaign_id)
         try:
