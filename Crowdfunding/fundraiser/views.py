@@ -26,8 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent
 PAYPAL_CLIENT_ID = 'ATVSKJJabQepqW3iDJOKgVzCVfHpDdBKx8TwOo0HzqM_9rtTrPG-BXVorrmHcySgIqbg1Qm2Xvxn7dnC'
 PAYPAL_SECRET = 'EB9qpvp7NF2BHaME53BGz7PGaypp-MyDXCDk7pZHzjaVBUMgEoKkYbJ0GBOglDSW7893Kifa75OAQCk8'
 
+
 def index(request):
-    return render(request, 'index.html')
+    return campaign_list(request)
+
 
 # signup page
 def user_signup(request):
@@ -40,6 +42,7 @@ def user_signup(request):
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
 
+
 # login page
 def user_login(request):
     if request.method == 'POST':
@@ -49,16 +52,19 @@ def user_login(request):
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
             if user:
-                login(request, user)    
+                login(request, user)
                 return redirect('home')
     else:
         form = LoginForm()
     return render(request, 'newUI/login.html', {'form': form})
 
+
 # logout page
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
 # Create your views here.
 
 def create_campaign(request):
@@ -71,21 +77,25 @@ def create_campaign(request):
         form = CampaignForm()
     return render(request, 'create_campaign.html', {'form': form})
 
+
 def campaign_list(request):
     campaigns = Campaign.objects.all()
-    return render(request, 'campaign_list.html', {'campaigns': campaigns})
+    return render(request, 'newUI/campaign_list.html', {'campaigns': campaigns})
+
 
 def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, pk=campaign_id)
-    file = open(BASE_DIR/"campaign_store_id.txt", "w")
+    file = open(BASE_DIR / "campaign_store_id.txt", "w")
     file.write(str(campaign_id))
     return render(request, 'campaign_details.html', {'campaign': campaign})
+
 
 paypalrestsdk.configure({
     "mode": "sandbox",  # Change to "live" for production
     "client_id": PAYPAL_CLIENT_ID,
     "client_secret": PAYPAL_SECRET,
 })
+
 
 # views.py
 
@@ -96,7 +106,6 @@ def checkout_payment(request):
             request.session['campaign_id'] = campaign_id
             return redirect('create_payment')  # Assuming the PayPal payment process starts here
     return HttpResponseBadRequest("Invalid request")  # Handle invalid requests
-
 
 
 def create_payment(request):
@@ -124,7 +133,7 @@ def create_payment(request):
         return redirect(payment.links[1].href)  # Redirect to PayPal for payment
     else:
         return render(request, 'payment_failed.html')
-    
+
 
 def execute_payment(request):
     payment_id = request.GET.get('paymentId')
@@ -133,7 +142,7 @@ def execute_payment(request):
     payment = paypalrestsdk.Payment.find(payment_id)
 
     if payment.execute({"payer_id": payer_id}):
-        file = open(BASE_DIR/"campaign_store_id.txt", "r")
+        file = open(BASE_DIR / "campaign_store_id.txt", "r")
         context = file.read(1)
         campaign_id = int(context)
         print(campaign_id)
@@ -150,12 +159,12 @@ def execute_payment(request):
 
 
 def payment_checkout(request):
-    return render(request, 'checkout.html')    
-    
+    return render(request, 'checkout.html')
+
 
 def payment_failed(request):
-    return render(request, 'payment_failed.html')    
+    return render(request, 'payment_failed.html')
 
 
 def payment_success(request):
-    return render(request, 'payment_success.html')    
+    return render(request, 'payment_success.html')
