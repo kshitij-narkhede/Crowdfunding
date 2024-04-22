@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent
 
 # Create your views here.
 # Home page
-PAYPAL_CLIENT_ID = 'ATVSKJJabQepqW3iDJOKgVzCVfHpDdBKx8TwOo0HzqM_9rtTrPG-BXVorrmHcySgIqbg1Qm2Xvxn7dnC'
-PAYPAL_SECRET = 'EB9qpvp7NF2BHaME53BGz7PGaypp-MyDXCDk7pZHzjaVBUMgEoKkYbJ0GBOglDSW7893Kifa75OAQCk8'
+PAYPAL_CLIENT_ID = ''
+PAYPAL_SECRET = ''
 
 
 def index(request):
