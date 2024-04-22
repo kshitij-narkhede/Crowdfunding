@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../static/crowdfund-main/Images/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/crowdfund-main/css/style.css">
+    <link rel="stylesheet" href="../../static/crowdfund-main/css/header.css">
+    <link rel="stylesheet" href="../../static/crowdfund-main/css/typography.css">
+    <link rel="stylesheet" href="../../static/crowdfund-main/css/media.css">
+    <script defer src="../../static/crowdfund-main/js/script.js"></script>
+    <title>Crowd Funding</title>
+</head>
+<body>
+
+<div class="mobile-overlay"></div>
+<header class="main-header">
+    <nav class="pc-nav">
+        <figure class="logo-container">
+            <svg>
+                <use href="Images/sprite.svg#logo"></use>
+            </svg>
+        </figure>
+        <svg class="hamburger-icon">
+            <use href="Images/sprite.svg#icon-hamburger"></use>
+        </svg>
+        <ul class="pc-nav__list">
+            <li class="pc-nav__list-items"><a href="#">About</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="pc-nav__list-items"><a href="#">{{ request.user.username }}</a></li>
+            <li class="pc-nav__list-items"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li class="pc-nav__list-items"><a href="{% url 'login' %}">Login</a></li>
+            <li class="pc-nav__list-items"><a href="{% url 'signup' %}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<div class="error">Please enter your pledge value between <span class="min-pledge-value"></span> to $200!</div>
+<section class="project-section">
+    <div class="project__info-content">
+        <figure class="mastercraft-container">
+            <svg>
+                <use href="Images/sprite.svg#logo-mastercraft"></use>
+            </svg>
+        </figure>
+        <h1 class="project-title">Sahayta - crowdfunded products</h1>
+        <p class="project-description">Help contribute to innovative ideas and new products built by passionate people</p>
+        <!--?        <div class="project__info-content-buttons">-->
+        <!--?            <button class="project__back-btn">Back this project</button>-->
+        <!--?            <label class="bookmark-btn" for="bookmark-checkbox">-->
+        <!--?                <figure class="not-bookmarked" style="display: none;">-->
+        <!--?                    <svg class="bookmark-svg">-->
+        <!--?                        <use href="Images/sprite.svg#icon-bookmark"></use>-->
+        <!--?                    </svg>-->
+        <!--?                </figure>-->
+        <!--?                <figure class="bookmarked">-->
+        <!--?                    <svg class="bookmark-svg">-->
+        <!--?                        <use href="Images/sprite.svg#icon-bookmarked"></use>-->
+        <!--?                    </svg>-->
+        <!--?                </figure>-->
+
+        <!--?                <input type="checkbox" name="bookmark" id="bookmark-checkbox" checked style="display: none;">-->
+        <!--?                <span class="bookmark-text">Bookmarked</span>-->
+        <!--?            </label>-->
+        <!--?        </div>-->
+    </div>
+    <!--?    <div class="showed-data__container">-->
+    <!--?        <div class="showed-data__content">-->
+    <!--?            <div class="backed__money-container">-->
+    <!--?                <h2 class="backed__money">$ <span class="backed__money-value">89125</span></h2>-->
+    <!--?                <p class="backed__total-money">of $100.000 backed</p>-->
+    <!--?            </div>-->
+    <!--?            <div class="backed__backers-container">-->
+    <!--?                <h2 class="backed__backers">5007</h2>-->
+    <!--?                <p class="backed__total-backers">total backers</p>-->
+    <!--?            </div>-->
+    <!--?            <div class="backed__days-container">-->
+    <!--?                <h2 class="backed__days">56</h2>-->
+    <!--?                <p class="backed__left-days">left days</p>-->
+    <!--?            </div>-->
+    <!--?        </div>-->
+    <!--?        <div class="progress-bar__container">-->
+    <!--?            <div class="progress__bar"></div>-->
+    <!--?        </div>-->
+    <!--?    </div>-->
+</section>
+<section class="about-project">
+    <div class="about-project__container">
+        <div class="about-project__details">
+            <h3 class="about-project__heading">About This Project</h3>
+            <p class="about-project__description">Sahayta is your go-to platform for crowdfunding innovative products that are changing the game. </p>
+            <p class="about-project__description">Whether it's a groundbreaking tech gadget, a sustainable fashion line, or a revolutionary home appliance, Sahayta empowers creators to bring their ideas to life with the support of a global community. Join us in backing the next big thing and shaping the future of innovation!</p>
+            <p></p>
+        </div>
+        <h1>All Campaigns</h1>
+        {% if campaigns %}
+        <ul>
+            {% for campaign in campaigns %}
+            <li>
+                <div class="project">
+                    <label for="project__input-radio-3" class="project-radio__label">
+                        <input type="radio" name="project__input-radio" id="project__input-radio-3" class="project__input-radio">
+                        <div class="project-info">
+                            <a href="{% url 'campaign_details' campaign.id %}" onclick={CampaignHandler(campaign.id)}>
+                                <h3 class="reward-content__heading">{{ campaign.title }}</h3>
+                            </a>
+
+                            <h4 class="reward-content__pledge">                 </h4>
+                            <p class="reward-left project-left"><span class="reward-left__number reward-left__black">$ {{ campaign.goal_amount }}</span>goal</p>
+                            <p class="reward-content__description project-des">Campaign description: {{ campaign.description }}</p>
+                            <p class="reward-content__description coll-amt">$ {{ campaign.collected_amount }} collected!</p>
+                        </div>
+                        <div class="pledge-data">
+                            <p class="enter-pledge">Enter your pledge</p>
+                            <div class="pledge-data__buttons-container">
+                                <a href="{% url 'campaign_details' campaign.id %}" onclick={CampaignHandler(campaign.id)}>
+                                    <button class="select-pro1ject__btn">Continue</button>
+                                </a>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No campaigns found.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="back-project__container">
+    <div class="back-project__content">
+        <h3 class="back-project__heading">Back any project</h3>
+        <svg class="modal-close-svg">
+            <use href="Images/sprite.svg#icon-close-modal"></use>
+        </svg>
+        <p class="back-project__description">Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?</p>
+    </div>
+</section>
+<section class="thanks-container">
+    <div class="thanks-content">
+        <svg>
+            <use href="Images/sprite.svg#icon-check"></use>
+        </svg>
+        <h3 class="thanks-heading">Thanks for your support!</h3>
+        <p class="thanks-description">Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an email once our campaign is completed.</p>
+        <button class="gotit-btn">Got it!</button>
+    </div>
+</section>
+</body>
+</html>
