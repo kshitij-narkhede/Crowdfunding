@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent
 
 # Create your views here.
 # Home page
-PAYPAL_CLIENT_ID = ''
-PAYPAL_SECRET = ''
+PAYPAL_CLIENT_ID = 'ATVSKJJabQepqW3iDJOKgVzCVfHpDdBKx8TwOo0HzqM_9rtTrPG-BXVorrmHcySgIqbg1Qm2Xvxn7dnC'
+PAYPAL_SECRET = 'EB9qpvp7NF2BHaME53BGz7PGaypp-MyDXCDk7pZHzjaVBUMgEoKkYbJ0GBOglDSW7893Kifa75OAQCk8'
 
 
 def index(request):
@@ -75,7 +75,7 @@ def create_campaign(request):
             return redirect('campaigns')  # Redirect to campaigns list after creating a campaign
     else:
         form = CampaignForm()
-    return render(request, 'create_campaign.html', {'form': form})
+    return render(request, 'newUI/create_campaign.html', {'form': form})
 
 
 def campaign_list(request):
@@ -87,7 +87,7 @@ def campaign_details(request, campaign_id):
     campaign = get_object_or_404(Campaign, pk=campaign_id)
     file = open(BASE_DIR / "campaign_store_id.txt", "w")
     file.write(str(campaign_id))
-    return render(request, 'campaign_details.html', {'campaign': campaign})
+    return render(request, 'newUI/campaign_details.html', {'campaign': campaign})
 
 
 paypalrestsdk.configure({

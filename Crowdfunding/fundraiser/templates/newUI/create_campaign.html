@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sahayata</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+
+    <link rel="icon" type="image/png" href="{% static 'signup/images/sahayata_nutrition_health_education_research_foundation_logo.jpeg' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/animate/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/css/main.css' %}">
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head content... -->
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="{% static 'login/images/img-01.png' %}" alt="IMG">
+            </div>
+
+            <form class="login100-form validate-form" method="POST">
+                {% csrf_token %}
+                <img style="height: 100px;width: 100px; margin-left: 100px;" src="../../static/signup/images/sahayata_nutrition_health_education_research_foundation_logo.jpeg">
+                <span class="login100-form-title">
+      Create Campaign
+     </span>
+
+                <div class="wrap-input100 validate-input" data-validate="Valid Title is required">
+                    <input class="input100" type="text" name="title" placeholder="Title">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+<!--?       <i class="fa fa-user" aria-hidden="true"></i>-->
+      </span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Description is required">
+                    <input class="input100" type="text" name="description" placeholder="What is the campaign for?">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+<!--?       <i class="fa fa-lock" aria-hidden="true"></i>-->
+      </span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Goal needed">
+                    <input class="input100" type="number" name="goal_amount" placeholder="Your goal (use only digits)">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+<!--?       <i class="fa fa-lock" aria-hidden="true"></i>-->
+      </span>
+                </div>
+<div class="wrap-input100 validate-input" data-validate="Goal needed">
+                    <input class="input100" type="number" name="collected_amount" placeholder="Currently collected">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+<!--?       <i class="fa fa-lock" aria-hidden="true"></i>-->
+      </span>
+                </div>
+
+<div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        Create!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- scripts... -->
+
+</body>
+</html>
+
+
+<!--===============================================================================================-->
+<script src="{% static 'login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'login/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'login/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'login/vendor/select2/select2.min.js' %}"></script>
+
+<!--===============================================================================================-->
+<script src="{% static 'login/vendor/tilt/tilt.jquery.min.js' %}"></script>
+
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'login/js/main.js' %}"></script>
+
+
+</body>
+</html>

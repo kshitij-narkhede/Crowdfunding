@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Campaign Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet"
+          href="../../static/campaign-details/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="../../static/campaign-details/css/style.css">
+</head>
+
+<body>
+
+<div class="wrapper" style="background-image: url('../../static/campaign-details/images/bg-registration-form-3.jpg');">
+    <div class="inner">
+        <!--?				<form action="">-->
+        <h3>Campaign Details</h3>
+        <div class="form-group">
+            <div class="form-wrapper">
+                <label for="">Title: {{campaign.title}}</label>
+
+            </div>
+            <div class="form-wrapper">
+                <label for="">Goal Amount: $ {{ campaign.goal_amount }}</label>
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="form-wrapper">
+                <label for="">Description: {{ campaign.description }}</label>
+
+            </div>
+
+            <div class="form-wrapper">
+                <label for="">Collected Amount: $ {{ campaign.collected_amount }}</label>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-wrapper">
+                <label for="">ID: {{ campaign.id }}</label>
+
+            </div>
+
+        </div>
+        <div class="form-end">
+            <form action="{% url 'checkout_payment' %}" method="post" target="_blank">
+                {% csrf_token %}
+                <input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+                <button type="submit">Checkout</button>
+            </form>
+
+        </div>
+        </form>
+    </div>
+</div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

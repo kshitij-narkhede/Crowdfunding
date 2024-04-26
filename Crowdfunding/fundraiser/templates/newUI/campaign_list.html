@@ -31,6 +31,7 @@
         <ul class="pc-nav__list">
             <li class="pc-nav__list-items"><a href="#">About</a></li>
             {% if request.user.is_authenticated %}
+<li class="pc-nav__list-items"><a href="{% url 'create_campaign' %}">Create Campaign</a></li>
             <li class="pc-nav__list-items"><a href="#">{{ request.user.username }}</a></li>
             <li class="pc-nav__list-items"><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
