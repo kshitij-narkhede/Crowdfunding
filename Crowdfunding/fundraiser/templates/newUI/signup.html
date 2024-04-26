@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Sign Up 06</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="../../static/signup/css/style.css">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section"><img src="../../static/signup/images/sahayata_nutrition_health_education_research_foundation_logo.jpeg">Sahayata Signup</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="wrap d-md-flex">
+						<div class="text-wrap p-4 p-lg-5 d-flex img" style="background-image: url(../../static/signup/images/bg.jpg);">
+							<div class="text w-100">
+								<h2 class="mb-4">Let's Donate for Need ones</h2>
+								
+							</div>
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="row justify-content-center py-md-5">
+			      		<div class="col-lg-9">
+			      			
+									<form action="" method="post" class="signup-form">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+										
+						            	<button type="submit" class="btn btn-primary submit p-3">Create an account</button>
+						            
+
+				          </form>
+				          <div class="w-100">
+                            <a href="{% url 'login' %}">Already have account?</a>
+				          </div>
+			      		</div>
+			      	</div>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="../../static/signup/js/jquery.min.js"></script>
+  <script src="../../static/signup/js/popper.js"></script>
+  <script src="../../static/signup/js/bootstrap.min.js"></script>
+  <script src="../../static/signup/js/main.js"></script>
+
+	</body>
+</html>
+

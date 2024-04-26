@@ -1,0 +1,50 @@
+<section class="page-width our-process__container">
+    <div class="our-process__container--wrapper">
+       <figure><img src="{{section.settings.bg-image | img_url: '1440x'}}" alt="{{section.settings.alt-text}}"></figure>
+      <h1 class="heading-1">{{section.settings.title-start}} <span>{{section.settings.title-italic}}</span> {{section.settings.title-end}}</h1>
+    </div>
+  </section>
+  {% schema %}
+    {
+      "name": "Hero with centered text",
+      "settings": [
+      {
+          "type": "text",
+          "id": "title-start",
+          "label": "Starting Text"
+        },
+      {
+          "type": "text",
+          "id": "title-italic",
+          "label": "Middle Italic Text"
+        },
+      {
+          "type": "text",
+          "id": "title-end",
+          "label": "Ending Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg-image",
+          "label": "Background Image"
+        },
+      {
+          "type": "text",
+          "id": "alt-text",
+          "label": "Alt Text"
+        }
+      ],
+    "presets": [
+      {
+        "name": "Hero with centered text",
+        "category": "Home Section"
+      }
+    ]
+    }
+  {% endschema %}
+  
+  {% stylesheet %}
+  {% endstylesheet %}
+  
+  {% javascript %}
+  {% endjavascript %}

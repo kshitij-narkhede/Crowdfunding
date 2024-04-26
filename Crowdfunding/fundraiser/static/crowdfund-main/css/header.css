@@ -1,0 +1,71 @@
+.main-header {
+    background: url("../Images/image-hero-desktop.jpg") center center/cover;
+    height: 40vh;
+}
+
+.pc-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px 100px;
+    position: relative;
+}
+
+.logo-container svg {
+    height: 20px;
+    width: 110px;
+}
+
+.hamburger-icon {
+    width: 18px;
+    height: 18px;
+    display: none;
+}
+
+.mobile-overlay {
+    display: none;
+    background: hsla(0, 0%, 48%, 0.25);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+
+.pc-nav__list {
+    display: flex;
+    align-items: center;
+}
+
+.showed.pc-nav__list {
+    visibility: visible;
+    animation: mobileMenuIn 0.3s ease;
+    opacity: 1;
+}
+
+@keyframes mobileMenuIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pc-nav__list-items {
+    margin: 0 20px;
+}
+
+.pc-nav__list-items a {
+    color: white;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.pc-nav__list-items a:hover {
+    color: hsl(176, 50%, 47%);
+    transform: translateY(-4px);
+}

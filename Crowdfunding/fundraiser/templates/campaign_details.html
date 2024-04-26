@@ -9,8 +9,8 @@
     <h1>Campaign Details</h1>
     <h2>{{ campaign.title }}</h2>
     <p>Description: {{ campaign.description }}</p>
-    <p>Goal Amount: ${{ campaign.goal_amount }}</p>
-    <p>Collected Amount: ${{ campaign.collected_amount }}</p>
+    <p>Goal Amount: $ {{ campaign.goal_amount }}</p>
+    <p>Collected Amount: $ {{ campaign.collected_amount }}</p>
     <p>ID: {{ campaign.id }}</p>
     <!-- <a href="{% url 'checkout_payment' %}" target="_blank">Contribute</a> -->
     <form action="{% url 'checkout_payment' %}" method="post" target="_blank"  >
